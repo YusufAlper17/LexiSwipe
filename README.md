@@ -17,18 +17,26 @@ An English vocabulary learning app built with Flutter. Swipe through curated wor
 ## Screenshots
 Stored under `docs/screenshots/`:
 
-![Home](docs/screenshots/01_home.png)
-![Word Lists](docs/screenshots/02_word_lists.png)
-![Levels](docs/screenshots/03_levels.png)
-![Learn Card (front)](docs/screenshots/04_learn_card.png)
-![Learn Card (details)](docs/screenshots/05_word_detail.png)
-![Word Bank Sheet](docs/screenshots/06_word_bank.png)
-![Practice Lists](docs/screenshots/07_practice_lists.png)
-![Levels (alt)](docs/screenshots/08_levels_alt.png)
-![Quiz – Multiple Choice](docs/screenshots/09_quiz_multiple_choice.png)
-![Flashcard Modal](docs/screenshots/10_flashcard_modal.png)
-![Word Detail Modal](docs/screenshots/11_word_detail_modal.png)
-![Quiz – Correct Answer](docs/screenshots/12_quiz_multiple_choice_correct.png)
+<p align="center">
+  <img src="docs/screenshots/01_home.png" alt="Home" width="280" />
+  <img src="docs/screenshots/02_word_lists.png" alt="Word Lists" width="280" />
+  <img src="docs/screenshots/03_levels.png" alt="Levels" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/04_learn_card.png" alt="Learn Card (front)" width="280" />
+  <img src="docs/screenshots/05_word_detail.png" alt="Learn Card (details)" width="280" />
+  <img src="docs/screenshots/06_word_bank.png" alt="Word Bank Sheet" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/07_practice_lists.png" alt="Practice Lists" width="280" />
+  <img src="docs/screenshots/08_levels_alt.png" alt="Levels (alt)" width="280" />
+  <img src="docs/screenshots/09_quiz_multiple_choice.png" alt="Quiz – Multiple Choice" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/10_flashcard_modal.png" alt="Flashcard Modal" width="280" />
+  <img src="docs/screenshots/11_word_detail_modal.png" alt="Word Detail Modal" width="280" />
+  <img src="docs/screenshots/12_quiz_multiple_choice_correct.png" alt="Quiz – Correct Answer" width="280" />
+</p>
 
 ## Tech Stack
 - Flutter 3 (Dart)
@@ -143,18 +151,26 @@ Custom Proprietary License (All Rights Reserved). No public use, distribution or
 ### Ekran Görüntüleri
 Ekran görüntüleri `docs/screenshots/` altındadır:
 
-![Ana Ekran](docs/screenshots/01_home.png)
-![Kelime Listeleri](docs/screenshots/02_word_lists.png)
-![Seviye Seçimi](docs/screenshots/03_levels.png)
-![Öğrenme Kartı (ön)](docs/screenshots/04_learn_card.png)
-![Öğrenme Kartı (detay)](docs/screenshots/05_word_detail.png)
-![Kelime Bankası](docs/screenshots/06_word_bank.png)
-![Pratik Listeleri](docs/screenshots/07_practice_lists.png)
-![Seviye Seçimi (alternatif)](docs/screenshots/08_levels_alt.png)
-![Quiz – Çoktan Seçmeli](docs/screenshots/09_quiz_multiple_choice.png)
-![Kart Modalı](docs/screenshots/10_flashcard_modal.png)
-![Kelime Detayı Modalı](docs/screenshots/11_word_detail_modal.png)
-![Quiz – Doğru Cevap](docs/screenshots/12_quiz_multiple_choice_correct.png)
+<p align="center">
+  <img src="docs/screenshots/01_home.png" alt="Ana Ekran" width="280" />
+  <img src="docs/screenshots/02_word_lists.png" alt="Kelime Listeleri" width="280" />
+  <img src="docs/screenshots/03_levels.png" alt="Seviye Seçimi" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/04_learn_card.png" alt="Öğrenme Kartı (ön)" width="280" />
+  <img src="docs/screenshots/05_word_detail.png" alt="Öğrenme Kartı (detay)" width="280" />
+  <img src="docs/screenshots/06_word_bank.png" alt="Kelime Bankası" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/07_practice_lists.png" alt="Pratik Listeleri" width="280" />
+  <img src="docs/screenshots/08_levels_alt.png" alt="Seviye Seçimi (alternatif)" width="280" />
+  <img src="docs/screenshots/09_quiz_multiple_choice.png" alt="Quiz – Çoktan Seçmeli" width="280" />
+</p>
+<p align="center">
+  <img src="docs/screenshots/10_flashcard_modal.png" alt="Kart Modalı" width="280" />
+  <img src="docs/screenshots/11_word_detail_modal.png" alt="Kelime Detayı Modalı" width="280" />
+  <img src="docs/screenshots/12_quiz_multiple_choice_correct.png" alt="Quiz – Doğru Cevap" width="280" />
+</p>
 
 ### Kurulum
 Önkoşullar:

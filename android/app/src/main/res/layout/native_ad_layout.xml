@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.gms.ads.nativead.NativeAdView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <!-- Play Store İşareti (Sağ üstte) -->
+        <TextView
+            android:id="@+id/ad_attribution"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="#F1F1F1"
+            android:text="REKLAM"
+            android:textColor="#6E6E6E"
+            android:textSize="10sp"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp"
+            android:includeFontPadding="false"
+            android:gravity="center"/>
+
+        <!-- Uygulama İkonu -->
+        <ImageView
+            android:id="@+id/ad_app_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="12dp"/>
+
+        <!-- Başlık ve Reklam Veren Bilgisi -->
+        <LinearLayout
+            android:id="@+id/ad_header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toEndOf="@id/ad_app_icon"
+            android:layout_toStartOf="@id/ad_attribution"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp">
+
+            <TextView
+                android:id="@+id/ad_headline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/ad_advertiser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="#828282"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <!-- Reklam Açıklaması -->
+        <TextView
+            android:id="@+id/ad_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ad_header_layout"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:textSize="14sp"
+            android:textColor="#333333"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <!-- Yükleme Butonu (CTA) -->
+        <Button
+            android:id="@+id/ad_call_to_action"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_below="@id/ad_body"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ad_button_background"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:minWidth="100dp"
+            android:layout_marginTop="4dp" />
+
+    </RelativeLayout>
+</com.google.android.gms.ads.nativead.NativeAdView> 

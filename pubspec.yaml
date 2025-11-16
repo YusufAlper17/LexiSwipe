@@ -1,0 +1,74 @@
+name: LexiSwipe
+description: "İngilizce Kelime Öğrenme Uygulaması"
+publish_to: 'none'
+
+version: 1.0.12+24
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  provider: ^6.1.1
+  shared_preferences: ^2.2.2
+  google_mobile_ads: ^4.0.0
+  google_fonts: ^6.1.0
+  audioplayers: ^5.2.1
+  just_audio: ^0.9.36
+  card_swiper: ^3.0.1
+  http: ^1.2.0
+  flutter_tts: ^3.8.5
+  flutter_svg: ^2.0.17
+  lottie: ^3.3.1
+  in_app_purchase: ^3.1.13
+  flutter_staggered_animations: ^1.1.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/app_icon.png"
+  adaptive_icon_round: true
+  android_adaptive_icon_padding: true
+  android_adaptive_icon_foreground_scale_factor: 0.85
+  ios_content_mode: "scaleAspectFit"
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    background_color: "#ffffff"
+    theme_color: "#ffffff"
+  windows:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    icon_size: 256
+  macos:
+    generate: true
+    image_path: "assets/images/app_icon.png"
+    icon_size: 1024
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/
+    - assets/images/
+    - assets/sounds/
+    - assets/sounds/swipe.mp3
+    - assets/sounds/cevirme.mp3
+    - assets/sounds/mixkit-cool-interface-click-tone-2568.wav
+    - assets/sounds/mixkit-correct-answer-tone-2870.wav
+    - assets/sounds/error-8-206492.mp3
+    - assets/data/The_Oxford_3000.json
+    - assets/data/The_Oxford_5000.json
+    - assets/data/American_Oxford_3000.json
+    - assets/data/American_Oxford_5000.json 

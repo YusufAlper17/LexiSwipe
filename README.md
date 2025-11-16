@@ -17,65 +17,12 @@ An English vocabulary learning app built with Flutter. Swipe through curated wor
 ## Screenshots
 Stored under `docs/screenshots/`:
 
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/01_home.png" alt="Home" width="240" />
-    <figcaption>Home — progress, stars and hearts</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/02_word_lists.png" alt="Word Lists" width="240" />
-    <figcaption>Word Lists — Oxford 3000/5000 & American Oxford</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/03_levels.png" alt="Levels" width="240" />
-    <figcaption>Levels — grouped practice sets</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/04_learn_card.png" alt="Learn Card (front)" width="240" />
-    <figcaption>Learn — swipeable card front</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/05_word_detail.png" alt="Learn Card (details)" width="240" />
-    <figcaption>Details — IPA, meaning, examples, TTS</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/06_word_bank.png" alt="Word Bank Sheet" width="240" />
-    <figcaption>Word Bank — saved words and mistakes</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/07_practice_lists.png" alt="Practice Lists" width="240" />
-    <figcaption>Practice — select lists for drills</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/08_levels_alt.png" alt="Levels (alt)" width="240" />
-    <figcaption>Levels (alt) — alternative layout</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/09_quiz_multiple_choice.png" alt="Quiz – Multiple Choice" width="240" />
-    <figcaption>Quiz — multiple-choice questions</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/10_flashcard_modal.png" alt="Flashcard Modal" width="240" />
-    <figcaption>Flashcard Modal — quick review</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/11_word_detail_modal.png" alt="Word Detail Modal" width="240" />
-    <figcaption>Word Detail Modal — meanings & examples</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/12_quiz_multiple_choice_correct.png" alt="Quiz – Correct Answer" width="240" />
-    <figcaption>Quiz — correct answer feedback</figcaption>
-  </figure>
-</p>
+| | | |
+|---|---|---|
+| <img src="docs/screenshots/01_home.png" alt="Home" width="220" /><br/><sub>Home — progress, stars and hearts</sub> | <img src="docs/screenshots/02_word_lists.png" alt="Word Lists" width="220" /><br/><sub>Word Lists — Oxford 3000/5000 & American Oxford</sub> | <img src="docs/screenshots/03_levels.png" alt="Levels" width="220" /><br/><sub>Levels — grouped practice sets</sub> |
+| <img src="docs/screenshots/04_learn_card.png" alt="Learn Card (front)" width="220" /><br/><sub>Learn — swipeable card front</sub> | <img src="docs/screenshots/05_word_detail.png" alt="Learn Card (details)" width="220" /><br/><sub>Details — IPA, meaning, examples, TTS</sub> | <img src="docs/screenshots/06_word_bank.png" alt="Word Bank Sheet" width="220" /><br/><sub>Word Bank — saved words and mistakes</sub> |
+| <img src="docs/screenshots/07_practice_lists.png" alt="Practice Lists" width="220" /><br/><sub>Practice — select lists for drills</sub> | <img src="docs/screenshots/08_levels_alt.png" alt="Levels (alt)" width="220" /><br/><sub>Levels (alt) — alternative layout</sub> | <img src="docs/screenshots/09_quiz_multiple_choice.png" alt="Quiz – Multiple Choice" width="220" /><br/><sub>Quiz — multiple-choice questions</sub> |
+| <img src="docs/screenshots/10_flashcard_modal.png" alt="Flashcard Modal" width="220" /><br/><sub>Flashcard Modal — quick review</sub> | <img src="docs/screenshots/11_word_detail_modal.png" alt="Word Detail Modal" width="220" /><br/><sub>Word Detail Modal — meanings & examples</sub> | <img src="docs/screenshots/12_quiz_multiple_choice_correct.png" alt="Quiz – Correct Answer" width="220" /><br/><sub>Quiz — correct answer feedback</sub> |
 
 ## Tech Stack
 - Flutter 3 (Dart)
@@ -190,65 +137,12 @@ Custom Proprietary License (All Rights Reserved). No public use, distribution or
 ### Ekran Görüntüleri
 Ekran görüntüleri `docs/screenshots/` altındadır:
 
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/01_home.png" alt="Ana Ekran" width="240" />
-    <figcaption>Ana Ekran — ilerleme, yıldız ve canlar</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/02_word_lists.png" alt="Kelime Listeleri" width="240" />
-    <figcaption>Kelime Listeleri — Oxford 3000/5000 ve American Oxford</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/03_levels.png" alt="Seviye Seçimi" width="240" />
-    <figcaption>Seviye — gruplandırılmış pratik setleri</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/04_learn_card.png" alt="Öğrenme Kartı (ön)" width="240" />
-    <figcaption>Öğren — kaydırılabilir kart önü</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/05_word_detail.png" alt="Öğrenme Kartı (detay)" width="240" />
-    <figcaption>Detay — IPA, anlam, örnekler, TTS</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/06_word_bank.png" alt="Kelime Bankası" width="240" />
-    <figcaption>Kelime Bankası — kayıtlı kelimeler ve hatalar</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/07_practice_lists.png" alt="Pratik Listeleri" width="240" />
-    <figcaption>Pratik — alıştırma listeleri seçimi</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/08_levels_alt.png" alt="Seviye Seçimi (alternatif)" width="240" />
-    <figcaption>Seviye (alternatif) — farklı yerleşim</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/09_quiz_multiple_choice.png" alt="Quiz – Çoktan Seçmeli" width="240" />
-    <figcaption>Quiz — çoktan seçmeli sorular</figcaption>
-  </figure>
-</p>
-
-<p align="center">
-  <figure>
-    <img src="docs/screenshots/10_flashcard_modal.png" alt="Kart Modalı" width="240" />
-    <figcaption>Kart Modalı — hızlı tekrar</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/11_word_detail_modal.png" alt="Kelime Detayı Modalı" width="240" />
-    <figcaption>Kelime Detayı Modalı — anlamlar ve örnekler</figcaption>
-  </figure>
-  <figure>
-    <img src="docs/screenshots/12_quiz_multiple_choice_correct.png" alt="Quiz – Doğru Cevap" width="240" />
-    <figcaption>Quiz — doğru cevap geri bildirimi</figcaption>
-  </figure>
-</p>
+| | | |
+|---|---|---|
+| <img src="docs/screenshots/01_home.png" alt="Ana Ekran" width="220" /><br/><sub>Ana Ekran — ilerleme, yıldız ve canlar</sub> | <img src="docs/screenshots/02_word_lists.png" alt="Kelime Listeleri" width="220" /><br/><sub>Kelime Listeleri — Oxford 3000/5000 ve American Oxford</sub> | <img src="docs/screenshots/03_levels.png" alt="Seviye Seçimi" width="220" /><br/><sub>Seviye — gruplandırılmış pratik setleri</sub> |
+| <img src="docs/screenshots/04_learn_card.png" alt="Öğrenme Kartı (ön)" width="220" /><br/><sub>Öğren — kaydırılabilir kart önü</sub> | <img src="docs/screenshots/05_word_detail.png" alt="Öğrenme Kartı (detay)" width="220" /><br/><sub>Detay — IPA, anlam, örnekler, TTS</sub> | <img src="docs/screenshots/06_word_bank.png" alt="Kelime Bankası" width="220" /><br/><sub>Kelime Bankası — kayıtlı kelimeler ve hatalar</sub> |
+| <img src="docs/screenshots/07_practice_lists.png" alt="Pratik Listeleri" width="220" /><br/><sub>Pratik — alıştırma listeleri seçimi</sub> | <img src="docs/screenshots/08_levels_alt.png" alt="Seviye Seçimi (alternatif)" width="220" /><br/><sub>Seviye (alternatif) — farklı yerleşim</sub> | <img src="docs/screenshots/09_quiz_multiple_choice.png" alt="Quiz – Çoktan Seçmeli" width="220" /><br/><sub>Quiz — çoktan seçmeli sorular</sub> |
+| <img src="docs/screenshots/10_flashcard_modal.png" alt="Kart Modalı" width="220" /><br/><sub>Kart Modalı — hızlı tekrar</sub> | <img src="docs/screenshots/11_word_detail_modal.png" alt="Kelime Detayı Modalı" width="220" /><br/><sub>Kelime Detayı Modalı — anlamlar ve örnekler</sub> | <img src="docs/screenshots/12_quiz_multiple_choice_correct.png" alt="Quiz – Doğru Cevap" width="220" /><br/><sub>Quiz — doğru cevap geri bildirimi</sub> |
 
 ### Kurulum
 Önkoşullar:

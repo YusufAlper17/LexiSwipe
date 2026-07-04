@@ -8,6 +8,10 @@
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-blue)](#)
 [![License](https://img.shields.io/badge/License-Proprietary-red)](LICENSE)
 
+### [▶ Try the Live Demo](https://lexiswipe.vercel.app)
+
+Experience the app right in your browser — swipe the cards, take a quiz, and hear the pronunciation.
+
 [English](#-overview) • [Türkçe](README_TR.md)
 
 </div>

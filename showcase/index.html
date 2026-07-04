@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LexiSwipe — İngilizce Kelime Öğrenme Uygulaması | Canlı Demo</title>
+  <meta name="description" content="LexiSwipe: Oxford 3000/5000 kelime listeleri, kaydırmalı kartlar, quiz ve telaffuz desteğiyle İngilizce kelime öğrenme uygulaması. Tarayıcınızda canlı deneyin.">
+  <meta name="theme-color" content="#f4f7fa">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LexiSwipe — Canlı Demo">
+  <meta property="og:description" content="İngilizce kelime öğrenme uygulamasını tarayıcınızda deneyin. Flutter ile geliştirildi.">
+  <meta property="og:image" content="app/icons/Icon-512.png">
+
+  <link rel="icon" type="image/png" href="app/favicon.png">
+  <link rel="apple-touch-icon" href="app/icons/Icon-192.png">
+
+  <script>
+    // Mobil cihazlar uygulamayı doğrudan tam ekran deneyimler
+    (function () {
+      var ua = navigator.userAgent;
+      var isMobile = /Android|iPhone|iPod/i.test(ua) ||
+        (navigator.maxTouchPoints > 1 && /Macintosh|iPad/.test(ua));
+      if (isMobile) location.replace('app/');
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f4f7fa;
+      --card: #ffffff;
+      --ink: #12242e;
+      --muted: #5b6f7b;
+      --line: #e3ebf1;
+      --brand: #21647e;
+      --brand-strong: #174d62;
+      --brand-soft: #e3eff5;
+      --coral: #e8495f;
+      --mint: #58c99b;
+      --amber: #f5b942;
+      --shadow-lg: 0 24px 70px -18px rgba(18, 36, 46, .18);
+      --radius: 24px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    /* ---------- Arka plan dekoru ---------- */
+    .bg-decor {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+      background:
+        radial-gradient(720px 480px at 88% -10%, rgba(33, 100, 126, .10), transparent 62%),
+        radial-gradient(600px 420px at -8% 108%, rgba(232, 73, 95, .07), transparent 60%),
+        radial-gradient(520px 380px at 108% 82%, rgba(88, 201, 155, .09), transparent 62%);
+    }
+    .bg-decor::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(18, 36, 46, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(18, 36, 46, .035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse 82% 68% at 50% 42%, #000 30%, transparent 72%);
+      -webkit-mask-image: radial-gradient(ellipse 82% 68% at 50% 42%, #000 30%, transparent 72%);
+    }
+
+    /* ---------- Üst bar ---------- */
+    header {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      box-shadow: 0 6px 16px rgba(33, 100, 126, .25);
+    }
+    .header-actions { display: flex; align-items: center; gap: 12px; }
+
+    .lang-toggle {
+      display: flex;
+      background: #eaf0f4;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px;
+    }
+    .lang-toggle button {
+      border: 0;
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      padding: 5px 13px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lang-toggle button.active {
+      background: #fff;
+      color: var(--ink);
+      box-shadow: 0 2px 8px rgba(18, 36, 46, .10);
+    }
+
+    .gh-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 9px 16px;
+      border-radius: 999px;
+      transition: all .2s;
+    }
+    .gh-link:hover { border-color: #c8d6df; box-shadow: 0 6px 18px rgba(18, 36, 46, .08); }
+
+    /* ---------- Ana yerleşim ---------- */
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 8px 40px 20px;
+      display: grid;
+      grid-template-columns: minmax(430px, 555px) 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    /* ---------- Bilgi kartı ---------- */
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px 38px 28px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .info-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--brand), var(--mint) 45%, var(--amber) 75%, var(--coral));
+    }
+
+    .badge-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12.5px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: var(--brand-strong);
+      background: var(--brand-soft);
+      border: 1px solid #cfe3ec;
+      padding: 6px 13px;
+      border-radius: 999px;
+    }
+    .live-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #2eb872;
+      box-shadow: 0 0 0 0 rgba(46, 184, 114, .5);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(46, 184, 114, .45); }
+      70% { box-shadow: 0 0 0 7px rgba(46, 184, 114, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(46, 184, 114, 0); }
+    }
+    .platform-badge {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+      background: #f1f5f8;
+      border: 1px solid var(--line);
+      padding: 6px 13px;
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.05;
+      margin-bottom: 12px;
+    }
+    h1 .accent { color: var(--brand); }
+
+    .tagline {
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--brand-strong);
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+    .desc {
+      font-size: 14.5px;
+      line-height: 1.65;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .features { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; margin-bottom: 20px; }
+    .features li { display: flex; gap: 11px; align-items: flex-start; }
+    .f-icon {
+      flex: 0 0 34px;
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+    }
+    .f-icon svg { width: 18px; height: 18px; }
+    .f-icon.red { background: #fdecef; color: var(--coral); }
+    .f-icon.teal { background: #e3eff5; color: var(--brand); }
+    .f-icon.mint { background: #e7f7f0; color: #23966c; }
+    .f-icon.amber { background: #fdf3dd; color: #c98a12; }
+    .f-title { font-size: 13.5px; font-weight: 700; margin-bottom: 2px; }
+    .f-sub { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+    .stats {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      padding: 13px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+    .stat { display: flex; flex-direction: column; gap: 2px; }
+    .stat b { font-size: 17px; font-weight: 800; letter-spacing: -.01em; }
+    .stat span { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .stat-sep { width: 1px; height: 30px; background: var(--line); }
+
+    .tech-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+    .chip {
+      font-size: 12px;
+      font-weight: 700;
+      color: #3d5666;
+      background: #f1f5f8;
+      border: 1px solid var(--line);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+    .chip.flutter { color: #0468d7; background: #e8f2fd; border-color: #d2e6fa; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font: inherit;
+      font-size: 14.5px;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 13px 22px;
+      border-radius: 14px;
+      transition: all .2s;
+      cursor: pointer;
+    }
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+      box-shadow: 0 10px 26px -8px rgba(33, 100, 126, .55);
+    }
+    .btn.primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px -8px rgba(33, 100, 126, .6); }
+    .btn.ghost {
+      color: var(--ink);
+      background: #fff;
+      border: 1.5px solid #d7e2e9;
+    }
+    .btn.ghost:hover { border-color: var(--brand); color: var(--brand-strong); }
+    .btn svg { width: 17px; height: 17px; }
+
+    .hint {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-strong);
+      background: linear-gradient(90deg, rgba(33,100,126,.07), rgba(88,201,155,.07));
+      border: 1px dashed #b9d4e0;
+      border-radius: 12px;
+      padding: 11px 14px;
+    }
+    .hint svg { flex: 0 0 16px; width: 16px; height: 16px; }
+
+    /* ---------- Telefon (emülatör) ---------- */
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      min-width: 0;
+    }
+    .phone-glow { position: relative; }
+    .phone-glow::before {
+      content: "";
+      position: absolute;
+      inset: -8% -14%;
+      background: radial-gradient(46% 42% at 50% 52%, rgba(33, 100, 126, .16), transparent 70%);
+      z-index: -1;
+      filter: blur(6px);
+    }
+
+    .phone-scale { position: relative; }
+
+    .phone {
+      width: 403px;
+      height: 840px;
+      background: linear-gradient(160deg, #2e3238, #101216 32%, #17191d 78%, #2a2e33);
+      border-radius: 58px;
+      padding: 13px;
+      box-shadow:
+        0 60px 110px -28px rgba(18, 36, 46, .40),
+        0 26px 48px -22px rgba(18, 36, 46, .34),
+        inset 0 0 0 1.5px rgba(255, 255, 255, .07);
+      position: absolute;
+      top: 0; left: 0;
+      transform-origin: top left;
+    }
+
+    /* Yan tuşlar */
+    .phone::before, .phone::after { content: ""; position: absolute; background: #26292e; border-radius: 3px; }
+    .phone::before { left: -2.5px; top: 190px; width: 3.5px; height: 62px; box-shadow: 0 88px 0 #26292e; } /* ses tuşları */
+    .phone::after  { right: -2.5px; top: 240px; width: 3.5px; height: 96px; } /* güç tuşu */
+
+    .screen {
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      border-radius: 45px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .statusbar {
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 27px 0;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #0c151a;
+      position: relative;
+      background: #fff;
+      z-index: 6;
+    }
+    .sb-icons { display: flex; align-items: center; gap: 7px; }
+    .sb-icons svg { display: block; }
+
+    .island {
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 118px;
+      height: 34px;
+      background: #000;
+      border-radius: 20px;
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 12px;
+    }
+    .island::after {
+      content: "";
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #223, #000 70%);
+    }
+
+    .phone iframe {
+      display: block;
+      width: 100%;
+      height: calc(100% - 46px);
+      border: 0;
+      background: #fff;
+    }
+
+    .home-indicator {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 134px;
+      height: 5px;
+      border-radius: 3px;
+      background: rgba(0, 0, 0, .30);
+      z-index: 8;
+      pointer-events: none;
+    }
+
+    .screen-loader {
+      position: absolute;
+      top: 46px; left: 0; right: 0; bottom: 0;
+      background: #fff;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: opacity .5s ease;
+    }
+    .screen-loader.done { opacity: 0; pointer-events: none; }
+    .screen-loader img {
+      width: 78px; height: 78px;
+      border-radius: 21px;
+      box-shadow: 0 14px 34px rgba(33, 100, 126, .30);
+    }
+    .loader-ring {
+      width: 27px; height: 27px;
+      border-radius: 50%;
+      border: 3px solid rgba(33, 100, 126, .16);
+      border-top-color: var(--brand);
+      animation: spin .9s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { font-size: 13px; font-weight: 600; color: var(--muted); }
+
+    .stage-caption {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 18px;
+      box-shadow: 0 8px 22px -10px rgba(18, 36, 46, .14);
+    }
+    .stage-caption .live-dot { flex: 0 0 7px; }
+
+    footer {
+      text-align: center;
+      padding: 10px 20px 16px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #8ba0ac;
+    }
+    footer a { color: var(--brand); text-decoration: none; }
+
+    /* ---------- Giriş animasyonları ---------- */
+    .reveal { animation: rise .75s cubic-bezier(.18, .7, .25, 1) both; }
+    .reveal.d1 { animation-delay: .08s; }
+    .reveal.d2 { animation-delay: .18s; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .live-dot, .loader-ring { animation: none !important; }
+    }
+
+    /* ---------- Duyarlı düzen ---------- */
+    @media (max-width: 1060px) {
+      main { grid-template-columns: 1fr; gap: 44px; padding-top: 8px; max-width: 720px; }
+      .stage { order: 2; }
+    }
+    @media (max-width: 640px) {
+      header { padding: 16px 20px; }
+      main { padding-left: 18px; padding-right: 18px; }
+      .info-card { padding: 28px 24px; }
+      h1 { font-size: 34px; }
+      .features { grid-template-columns: 1fr; }
+      .stats { flex-wrap: wrap; gap: 14px; }
+      .stat-sep { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <header class="reveal">
+    <a class="brand" href="./">
+      <img src="app/icons/Icon-192.png" alt="LexiSwipe logo">
+      <span>LexiSwipe</span>
+    </a>
+    <div class="header-actions">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-tr" type="button">TR</button>
+        <button id="btn-en" type="button">EN</button>
+      </div>
+      <a class="gh-link" href="https://github.com/YusufAlper17/LexiSwipe" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sol: proje bilgi kartı -->
+    <section class="info-card reveal d1" aria-label="Proje bilgisi">
+      <div class="badge-row">
+        <span class="live-badge"><span class="live-dot"></span><span data-i18n="badge">Canlı Demo</span></span>
+        <span class="platform-badge">Android · iOS · Web</span>
+      </div>
+
+      <h1>Lexi<span class="accent">Swipe</span></h1>
+      <p class="tagline" data-i18n="tagline">Kaydır, öğren, pekiştir — İngilizce kelime öğrenmenin en akıcı yolu.</p>
+      <p class="desc" data-i18n="desc">LexiSwipe; Oxford 3000/5000 kelime listelerini kaydırmalı kartlar, quizler ve telaffuz desteğiyle bir araya getiren, Flutter ile geliştirilmiş kapsamlı bir kelime öğrenme uygulamasıdır.</p>
+
+      <ul class="features">
+        <li>
+          <span class="f-icon red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3.5" width="12" height="16" rx="2.5"/><path d="M4.5 6.5v13a2 2 0 0 0 2 2H15"/><path d="M11 9h4"/></svg>
+          </span>
+          <div>
+            <div class="f-title" data-i18n="f1t">Kaydırmalı kelime kartları</div>
+            <div class="f-sub" data-i18n="f1s">IPA telaffuz, kelime türü ve örnek cümleler</div>
+          </div>
+        </li>
+        <li>
+          <span class="f-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg>
+          </span>
+          <div>
+            <div class="f-title" data-i18n="f2t">Quiz ve sınav modu</div>
+            <div class="f-sub" data-i18n="f2s">Can, seri (streak) ve anlık geri bildirim</div>
+          </div>
+        </li>
+        <li>
+          <span class="f-icon mint">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5.5 6.5 9H3.5v6h3L11 18.5z"/><path d="M15.5 9.5a4 4 0 0 1 0 5"/><path d="M18 7a7.5 7.5 0 0 1 0 10"/></svg>
+          </span>
+          <div>
+            <div class="f-title" data-i18n="f3t">Sesli telaffuz (TTS)</div>
+            <div class="f-sub" data-i18n="f3s">Tek dokunuşla doğal seslendirme</div>
+          </div>
+        </li>
+        <li>
+          <span class="f-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 3.5h11a1 1 0 0 1 1 1V20l-6.5-3.8L5.5 20V4.5a1 1 0 0 1 1-1Z"/></svg>
+          </span>
+          <div>
+            <div class="f-title" data-i18n="f4t">Kelime bankası</div>
+            <div class="f-sub" data-i18n="f4s">Hata takibi ve hedefli tekrar listeleri</div>
+          </div>
+        </li>
+      </ul>
+
+      <div class="stats">
+        <div class="stat"><b>5.000+</b><span data-i18n="s1">kelime</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><b>4</b><span data-i18n="s2">Oxford kelime listesi</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><b>A1–C1</b><span data-i18n="s3">CEFR seviyeleri</span></div>
+      </div>
+
+      <div class="tech-chips" aria-label="Teknolojiler">
+        <span class="chip flutter">Flutter</span>
+        <span class="chip">Dart</span>
+        <span class="chip">Provider</span>
+        <span class="chip">Text-to-Speech</span>
+        <span class="chip">AdMob</span>
+        <span class="chip">In-App Purchase</span>
+        <span class="chip">Lottie</span>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn primary" href="app/" target="_blank" rel="noopener">
+          <span data-i18n="cta1">Yeni sekmede aç</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+        </a>
+        <a class="btn ghost" href="https://github.com/YusufAlper17/LexiSwipe" target="_blank" rel="noopener">
+          <span data-i18n="cta2">GitHub'da incele</span>
+        </a>
+      </div>
+
+      <div class="hint">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v2"/><path d="m5.6 5.6 1.4 1.4"/><path d="m18.4 5.6-1.4 1.4"/><path d="M9 14a3 3 0 1 1 6 0c0 1.5-1 2-1 3.5h-4C10 16 9 15.5 9 14Z"/><path d="M10.5 20h3"/></svg>
+        <span data-i18n="hint">Sağdaki telefondan uygulamayı gerçek zamanlı deneyebilirsiniz — kartları kaydırın!</span>
+      </div>
+    </section>
+
+    <!-- Sağ: telefon emülatörü -->
+    <section class="stage reveal d2" aria-label="Canlı uygulama önizlemesi">
+      <div class="phone-glow">
+        <div class="phone-scale" id="phoneScale">
+          <div class="phone" id="phone">
+            <div class="screen">
+              <div class="island"></div>
+              <div class="statusbar">
+                <span id="sbClock">09:41</span>
+                <span class="sb-icons">
+                  <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+                  <svg width="15" height="11" viewBox="0 0 16 12" fill="currentColor" aria-hidden="true"><path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM8 5c1.9 0 3.6.75 4.87 1.96l-1.42 1.42A4.98 4.98 0 0 0 8 7c-1.33 0-2.55.52-3.45 1.38L3.13 6.96A6.97 6.97 0 0 1 8 5Zm0-5c3.04 0 5.8 1.2 7.83 3.16l-1.42 1.42A8.96 8.96 0 0 0 8 2c-2.49 0-4.75.99-6.41 2.58L.17 3.16A10.96 10.96 0 0 1 8 0Z"/></svg>
+                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none" aria-hidden="true"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="15" height="8" rx="2" fill="currentColor"/><path d="M23 4v4c1-.3 1.6-1 1.6-2S24 4.3 23 4Z" fill="currentColor" opacity=".4"/></svg>
+                </span>
+              </div>
+              <iframe id="appFrame" src="app/" title="LexiSwipe canlı demo" loading="eager" allow="autoplay"></iframe>
+              <div class="screen-loader" id="screenLoader">
+                <img src="app/icons/Icon-192.png" alt="">
+                <div class="loader-ring"></div>
+                <div class="loader-text" data-i18n="loading">Uygulama yükleniyor…</div>
+              </div>
+              <div class="home-indicator"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="stage-caption">
+        <span class="live-dot"></span>
+        <span data-i18n="caption">İnteraktif demo — dokunun ve deneyin</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="reveal d2">
+    <span data-i18n="footer">Yusuf Alper İlhan tarafından Flutter ile geliştirildi</span>
+    · <a href="https://github.com/YusufAlper17" target="_blank" rel="noopener">github.com/YusufAlper17</a>
+  </footer>
+
+  <script>
+    /* ---------- Çeviriler ---------- */
+    var I18N = {
+      tr: {
+        badge: 'Canlı Demo',
+        tagline: 'Kaydır, öğren, pekiştir — İngilizce kelime öğrenmenin en akıcı yolu.',
+        desc: 'LexiSwipe; Oxford 3000/5000 kelime listelerini kaydırmalı kartlar, quizler ve telaffuz desteğiyle bir araya getiren, Flutter ile geliştirilmiş kapsamlı bir kelime öğrenme uygulamasıdır.',
+        f1t: 'Kaydırmalı kelime kartları', f1s: 'IPA telaffuz, kelime türü ve örnek cümleler',
+        f2t: 'Quiz ve sınav modu', f2s: 'Can, seri (streak) ve anlık geri bildirim',
+        f3t: 'Sesli telaffuz (TTS)', f3s: 'Tek dokunuşla doğal seslendirme',
+        f4t: 'Kelime bankası', f4s: 'Hata takibi ve hedefli tekrar listeleri',
+        s1: 'kelime', s2: 'Oxford kelime listesi', s3: 'CEFR seviyeleri',
+        cta1: 'Yeni sekmede aç', cta2: "GitHub'da incele",
+        hint: 'Sağdaki telefondan uygulamayı gerçek zamanlı deneyebilirsiniz — kartları kaydırın!',
+        caption: 'İnteraktif demo — dokunun ve deneyin',
+        loading: 'Uygulama yükleniyor…',
+        footer: 'Yusuf Alper İlhan tarafından Flutter ile geliştirildi',
+        title: 'LexiSwipe — İngilizce Kelime Öğrenme Uygulaması | Canlı Demo'
+      },
+      en: {
+        badge: 'Live Demo',
+        tagline: 'Swipe, learn, master — the smoothest way to build English vocabulary.',
+        desc: 'LexiSwipe is a comprehensive vocabulary learning app built with Flutter, combining the Oxford 3000/5000 word lists with swipeable flashcards, quizzes and pronunciation support.',
+        f1t: 'Swipeable flashcards', f1s: 'IPA pronunciation, part of speech and example sentences',
+        f2t: 'Quiz & exam mode', f2s: 'Hearts, streaks and instant feedback',
+        f3t: 'Text-to-Speech', f3s: 'Natural pronunciation with a single tap',
+        f4t: 'Word bank', f4s: 'Mistake tracking and focused review lists',
+        s1: 'words', s2: 'Oxford word lists', s3: 'CEFR levels',
+        cta1: 'Open in new tab', cta2: 'View on GitHub',
+        hint: 'Try the app live on the phone — swipe the cards!',
+        caption: 'Interactive demo — tap and explore',
+        loading: 'Loading the app…',
+        footer: 'Designed & built with Flutter by Yusuf Alper İlhan',
+        title: 'LexiSwipe — English Vocabulary App | Live Demo'
+      }
+    };
+
+    var btnTr = document.getElementById('btn-tr');
+    var btnEn = document.getElementById('btn-en');
+
+    function setLang(lang) {
+      var dict = I18N[lang] || I18N.tr;
+      document.querySelectorAll('[data-i18n]').forEach(function (el) {
+        var key = el.getAttribute('data-i18n');
+        if (dict[key]) el.textContent = dict[key];
+      });
+      document.documentElement.lang = lang;
+      document.title = dict.title;
+      btnTr.classList.toggle('active', lang === 'tr');
+      btnEn.classList.toggle('active', lang === 'en');
+      try { localStorage.setItem('lexi-lang', lang); } catch (e) {}
+    }
+    btnTr.addEventListener('click', function () { setLang('tr'); });
+    btnEn.addEventListener('click', function () { setLang('en'); });
+
+    var savedLang = 'tr';
+    try { savedLang = localStorage.getItem('lexi-lang') || 'tr'; } catch (e) {}
+    setLang(savedLang);
+
+    /* ---------- Durum çubuğu saati ---------- */
+    function tick() {
+      var d = new Date();
+      document.getElementById('sbClock').textContent =
+        String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 20000);
+
+    /* ---------- Telefonu görünüme sığdır ---------- */
+    var PHONE_W = 403, PHONE_H = 840;
+    var phone = document.getElementById('phone');
+    var scaleBox = document.getElementById('phoneScale');
+
+    function fitPhone() {
+      var stage = document.querySelector('.stage');
+      var maxW = Math.max(stage.clientWidth - 16, 240);
+      var isStacked = window.matchMedia('(max-width: 1060px)').matches;
+      var maxH = isStacked
+        ? Math.max(window.innerHeight * 0.86, 480)
+        : Math.max(window.innerHeight - 210, 420);
+      var s = Math.min(1, maxW / PHONE_W, maxH / PHONE_H);
+      phone.style.transform = 'scale(' + s + ')';
+      scaleBox.style.width = (PHONE_W * s) + 'px';
+      scaleBox.style.height = (PHONE_H * s) + 'px';
+    }
+    fitPhone();
+    window.addEventListener('resize', fitPhone);
+
+    /* ---------- Yükleme katmanı ---------- */
+    var loader = document.getElementById('screenLoader');
+    var frame = document.getElementById('appFrame');
+    function hideLoader() {
+      loader.classList.add('done');
+      setTimeout(function () { loader.style.display = 'none'; }, 700);
+    }
+    frame.addEventListener('load', function () { setTimeout(hideLoader, 900); });
+    setTimeout(hideLoader, 15000); // güvenlik payı
+  </script>
+</body>
+</html>

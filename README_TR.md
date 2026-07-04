@@ -8,6 +8,10 @@
 [![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS%20%7C%20Web-blue)](#)
 [![Lisans](https://img.shields.io/badge/Lisans-Proprietary-red)](LICENSE)
 
+### [▶ Canlı Demoyu Deneyin](https://lexiswipe.vercel.app)
+
+Uygulamayı doğrudan tarayıcınızda deneyimleyin — kartları kaydırın, quiz çözün ve telaffuzu dinleyin.
+
 [English](README.md) • [Türkçe](#-genel-bakış)
 
 </div>

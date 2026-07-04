@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'core/providers/app_provider.dart';
@@ -59,7 +60,9 @@ class _InitializerWidgetState extends State<InitializerWidget> {
       
       // Onboarding durumunu kontrol et
       final prefs = await SharedPreferences.getInstance();
-      hasCompletedOnboarding = prefs.getBool('onboarding_completed') ?? false;
+      // Web (portföy demosu) her açılışta onboarding'den başlasın
+      hasCompletedOnboarding =
+          kIsWeb ? false : (prefs.getBool('onboarding_completed') ?? false);
       debugPrint('Onboarding completed: $hasCompletedOnboarding');
       
       // Ses servisini başlat
@@ -202,6 +205,22 @@ class _InitializerWidgetState extends State<InitializerWidget> {
             darkTheme: AppTheme.darkTheme,
             themeMode: appProvider.themeMode,
             debugShowCheckedModeBanner: false,
+            // Web demosunda telefon durum çubuğu için üstte güvenli alan bırak,
+            // böylece uygulamanın kendi arka planı çubuğun arkasını doldurur.
+            builder: kIsWeb
+                ? (context, child) {
+                    final mq = MediaQuery.of(context);
+                    return MediaQuery(
+                      data: mq.copyWith(
+                        padding:
+                            mq.padding.copyWith(top: mq.padding.top + 44),
+                        viewPadding: mq.viewPadding
+                            .copyWith(top: mq.viewPadding.top + 44),
+                      ),
+                      child: child!,
+                    );
+                  }
+                : null,
             initialRoute: '/',
             routes: {
               '/': (context) => GestureDetector(
